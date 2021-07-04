@@ -1,0 +1,16 @@
+{
+  "name": "orinoco-front-end",
+  "version": "1.0.0",
+  "description": "Front-end du site Orinoco",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch ./sass/main.scss:./style.css"
+},
+  "author": "Manon Wuilmot",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
+  }
+}
