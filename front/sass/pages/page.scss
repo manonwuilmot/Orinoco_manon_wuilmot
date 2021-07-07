@@ -1,0 +1,19 @@
+.product-colors{
+    margin-right :20px; margin-left: 20px;
+    
+    height : 50px;
+    display: flex;
+    flex-direction : row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    @extend.typo;
+    font-size : nth($font-size, 2);
+    &-box{
+        text-align: center;
+        width : 120px;
+        border-radius: 20px;
+        margin-right: 10px; margin-left: 10px;
+        background-color: $colour-light-gray;
+    }
+}

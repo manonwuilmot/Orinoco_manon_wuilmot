@@ -1,7 +1,5 @@
 // Création des éléments de la page produit // 
 
- 
-
 
 let params = (new URL(document.location)).searchParams;
 let id = params.get("id");
@@ -56,14 +54,28 @@ function displayOneProduct(id){
             img.classList.add("product-sheet-photo-img");
             img.src = data.imageUrl;
         
-
+            //ajout d'un bouton pour ajouter le produit au panier//
             const inputAddToBag = document.createElement("button");
             article.appendChild(inputAddToBag);
             inputAddToBag.setAttribute("id", "btn-add");
             inputAddToBag.setAttribute("type", "button");
-            inputAddToBag.textContent = "Ajouter au panier";
-        
-        
+            inputAddToBag.textContent = "Ajouter au panier pour " + data.price/100 + " euros";
+            
+            const productColors = document.createElement("div");
+            figcaption.appendChild(productColors);
+            productColors.classList.add("product-colors");
+            productColors.textContent = "Disponible dans les coloris suivants: ";
+
+
+            for (let i=0 ; i< data.colors.length; i ++){
+            const productColorsBloc = document.createElement("div");
+            productColors.appendChild(productColorsBloc);
+            productColorsBloc.classList.add("product-colors-box");
+            productColorsBloc.innerHTML = data.colors[i];
+
+            }
+            
+
             //affichages des données//
             productSheetDescriptionText.innerHTML = data.description;
             productSheetDescriptionTitleName.innerHTML = data.name;
@@ -75,44 +87,6 @@ function displayOneProduct(id){
 
 displayOneProduct(id);
 
-
-
-
-
-
-
-
-
-
-
-// function displayOneProduct(){
-//     fetch("http://localhost:3000/api/teddies")
-//       .then(function(response){
-//          return response.json();
-         
-//         })
-    
-//         .then(function(data){
-           
-//             for (let i = 0; i< data.length; i++){
-//                 const urlOneProduct = "http://localhost:3000/api/teddies/" + data[i]._id;
-//                 console.log(urlOneProduct);
-//                 fetch(urlOneProduct)
-//                 .then(function(response){
-//                     return response.json();
-                    
-//                 })
-//                    .then(function(data){
-//                     console.log(data);
-//                    })
-                
-//         }
-//         })
-        
-        
-//             }
-            
-// displayOneProduct();     
     
 
     

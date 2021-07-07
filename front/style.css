@@ -1,14 +1,16 @@
-.typo, .product-sheet-description-title, .product-sheet-description-text, #btn-add {
+.typo, .product-colors, .product-sheet-description-title, .product-sheet-description-text, #btn-add {
   font-family: "Roboto", sans-serif;
 }
 
 #btn-add {
-  background: linear-gradient(#d68234, #905cf9);
+  background-color: #ff5100;
   border: none;
   border-radius: 20px;
   width: 70%;
   margin-bottom: 20px;
+  margin-top: 30px;
   padding: 10px;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
   transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
@@ -119,6 +121,26 @@ figure {
 }
 .product-sheet-description-title-price {
   color: #b36e98;
+}
+
+.product-colors {
+  margin-right: 20px;
+  margin-left: 20px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.product-colors-box {
+  text-align: center;
+  width: 120px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: silver;
 }
 
 /*# sourceMappingURL=style.css.map */
