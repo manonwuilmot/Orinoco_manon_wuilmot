@@ -1,4 +1,4 @@
-.main{
+main{
     margin-top: 200px;
     width: 100%;
     display: flex;
@@ -12,24 +12,35 @@ figure{
 }
 .product-sheet{
     margin: 20px;
-    width: 350px;
-    height: 350px;
+    width: 45%;
+    height: 100%;
     background-color: $color-nude;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    @include mobile{
+        width : 100%;
+    }
     &-photo{
-        margin-top: 15px;
-        width: 330px;
-        height: 200px;
+        margin-top: 20px;
+        width: 90%;
+        height: 270px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        &:hover{
+            cursor: pointer;
+        }
         &-img{
             width: 100%;
+            transform: scale(1);
+            transition: transform 450ms ease-in-out;
+            &:hover{
+                transform: scale(1.15);
+            }
         }
     }
     &-description{
@@ -37,7 +48,7 @@ figure{
             @extend .typo;
             font-style: italic;
             font-size: nth($font-size, 2);
-            margin-left: 10px; margin-right: 10px;   
+            margin-left: 20px; margin-right: 20px;   
         }
         &-title{
             display: flex;
@@ -46,7 +57,7 @@ figure{
             align-items: center;
             color: $color-orange;
             @extend .typo;
-            margin-left: 10px; margin-right: 10px;
+            margin: 20px;
             &-name{
                 font-weight: 900;
                 font-size: nth($font-size, 4);

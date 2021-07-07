@@ -36,10 +36,11 @@ function displayAllProducts(){
             const figcaption = document.querySelectorAll("figcaption");
 
             for(i=0; i < figcaption.length ; i++){
+                    //création élément title contenant le nom et le prix//
                     const productSheetDescriptionTitle = document.createElement("div");
                     figcaption[i].appendChild(productSheetDescriptionTitle);
                     productSheetDescriptionTitle.classList.add("product-sheet-description-title")
-
+                    //création élément description de l'ours en peluche//
                     const productSheetDescriptionText = document.createElement("p");
                     figcaption[i].appendChild(productSheetDescriptionText);
                     productSheetDescriptionText.classList.add("product-sheet-description-text");  
@@ -69,19 +70,23 @@ function displayAllProducts(){
         
             } 
             
+            //création élément image et lien de l'ours en peluche//
             const figures = document.querySelectorAll("figure");
             
             for(i=0; i < figures.length ; i++){
 
             const productLink = document.createElement("a");
             figures[i].appendChild(productLink);
-            productLink.classList.add("product-sheet-photo");
+            productLink.classList.add("product-sheet-photo-img");
+            productLink.href = "product.html" +"?id=" + data[i]._id;
             
+
+            const links = document.querySelectorAll("figure a");
             const img = document.createElement("img");
-            figures[i].appendChild(img);
-                    img.classList.add("product-sheet-photo-img");
-                    img.src = data[i].imageUrl;
-            }             
+            links[i].appendChild(img);
+            img.classList.add("product-sheet-photo-img");
+            img.src = data[i].imageUrl;
+            }  
         })
 }
 
@@ -99,7 +104,22 @@ displayAllProducts();
 //     document.querySelector("main")
 //     .innerText = "Oups, les ours en peluches ne sont plus ici. Merci de mettre à jour votre page.";
 // })
-  
-        
-     
+
+
+function displayOneProduct(){
+    fetch("http://localhost:3000/api/teddies") 
+      .then(function(response){
+         return response.json();
+        })
+    
+        .then(function(data){
+        for(let i = 0; i < data.length; i++){
+        const UrlEachDataProduct = "http://localhost:3000/api/teddies/" + data[i]._id;
+        console.log(UrlEachDataProduct);
+        }
+})
+}
+
+
+
 
