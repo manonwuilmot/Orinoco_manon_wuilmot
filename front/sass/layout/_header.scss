@@ -20,8 +20,10 @@
         font-size: nth($font-size, 7);
         color: $color-pink;
         margin-right: 40px;
+        transition: transform 450ms ease-in-out;
         &:hover{
             cursor: pointer;
+            transform: scale(1.15);
         }
     }
 }

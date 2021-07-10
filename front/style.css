@@ -1,4 +1,4 @@
-.typo, .product-colors, .product-sheet-description-title, .product-sheet-description-text, #btn-add {
+.typo, .form, .order-list, .main-order-title-form, .main-order-title, .product-colors, .product-sheet-description-title, .product-sheet-description-text, #btn-add {
   font-family: "Roboto", sans-serif;
 }
 
@@ -46,12 +46,14 @@
   font-size: 4.5rem;
   color: #b36e98;
   margin-right: 40px;
+  transition: transform 450ms ease-in-out;
 }
 .header-shopping-bag:hover {
   cursor: pointer;
+  transform: scale(1.15);
 }
 
-main {
+.main {
   margin-top: 200px;
   width: 100%;
   display: flex;
@@ -126,7 +128,7 @@ figure {
 .product-colors {
   margin-right: 20px;
   margin-left: 20px;
-  height: 50px;
+  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -138,9 +140,94 @@ figure {
   text-align: center;
   width: 120px;
   border-radius: 20px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin: 5px 10px;
+  border: silver solid 2px;
+}
+.product-colors-box:hover {
+  cursor: pointer;
   background-color: silver;
+}
+
+.main-order {
+  margin-top: 150px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.main-order-title {
+  font-size: 1.5rem;
+  color: #b36e98;
+  margin-left: 20px;
+}
+.main-order-title-form {
+  font-size: 1.5rem;
+  color: #d68234;
+  margin-left: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+li {
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.order-list {
+  width: 90%;
+  height: 100%;
+  border: #b36e98 solid 2px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 20px;
+  width: 90%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: #b36e98 solid 2px;
+}
+.form div {
+  margin-left: 20px;
+}
+.form input {
+  margin-left: 20px;
+  width: 300px;
+  border: #d68234 solid 2px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.form input.input-submit {
+  margin-left: 0;
+  background-color: #ff5100;
+  color: white;
+  padding: 5px;
+  border: none;
+  opacity: 1;
+  transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
+}
+.form input.input-submit:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  opacity: 0.8;
 }
 
 /*# sourceMappingURL=style.css.map */

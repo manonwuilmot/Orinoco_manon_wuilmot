@@ -1,7 +1,6 @@
 .product-colors{
     margin-right :20px; margin-left: 20px;
-    
-    height : 50px;
+    height : 100%;
     display: flex;
     flex-direction : row;
     flex-wrap: wrap;
@@ -10,10 +9,98 @@
     @extend.typo;
     font-size : nth($font-size, 2);
     &-box{
+
         text-align: center;
         width : 120px;
         border-radius: 20px;
-        margin-right: 10px; margin-left: 10px;
-        background-color: $colour-light-gray;
+        margin: 5px 10px;
+        border: $colour-light-gray solid 2px;
+        &:hover{
+            cursor: pointer;
+            background-color: $colour-light-gray;
+        }
+    }
+}
+
+.main-order{
+    margin-top: 150px;
+    width: 100%;
+    display : flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    &-title{
+        @extend .typo;
+        font-size: nth($font-size, 4);
+        color : $color-pink;
+        margin-left: 20px;
+        &-form{
+        @extend .typo;
+        font-size: nth($font-size, 4);
+        color : $color-orange;
+        margin-left: 20px;
+        }
+    }
+}
+ul{
+    list-style: none;
+    padding : 0;
+    margin-left: 20px; 
+    margin-right : 20px;
+}
+li{
+    padding: 0;
+    padding-top: 10px; padding-bottom : 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.order{
+    &-list{
+        width : 90%;
+        height : 100%;
+        border: $color-pink solid 2px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        @extend .typo;
+    }  
+}
+.form{
+    padding-top: 10px; padding-bottom : 10px;
+    margin-left: 20px;
+    width : 90%;
+    height : 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    @extend .typo;
+    border: $color-pink solid 2px;
+    & div{
+        margin-left: 20px;
+    }
+    & input{
+        margin-left : 20px;
+        width : 300px;
+        border : $color-orange solid 2px;
+        border-radius: 5px;
+        padding : 5px;
+        &.input-submit{
+            margin-left: 0;
+            background-color:rgb(255, 81, 0);
+            color : white;
+            padding : 5px;
+            border : none;
+            opacity : 1;
+            transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
     }
 }
