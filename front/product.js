@@ -21,38 +21,51 @@ function displayOneProduct(id) {
         document.getElementById("btn-add").textContent = "Ajouter au panier pour " + data.price / 100 + " euros";
         //Boucle pour affichage des options couleurs//
         for (let i = 0; i < data.colors.length; i++) {
-        templateOptionsColors(data[i]);
-        const productColorsBloc = document.querySelectorAll(".product-colors-box");
-        productColorsBloc[i].innerHTML = data.colors[i];
-        }
+          templateOptionsColors(data[i]);
+          const options = document.querySelectorAll(".option-color");
+          options[i].innerHTML = data.colors[i];
+          }
         //affichage de la description du produit//
         document.querySelector(".product-sheet-description-text").innerHTML = data.description;
         document.querySelector(".product-sheet-description-title-name").innerHTML = data.name;
         //affichage du prix//
         document.querySelector(".product-sheet-description-title-price").innerHTML = data.price / 100 + " euros";
 
-        //récupération des données dans le local storage quand on clique sur le bouton "Addtobag"//
+        //récupération des données dans le local storage quand on clique sur le bouton "AddToBag"//
         const inputAddToBag = document.getElementById("btn-add");
         inputAddToBag.addEventListener("click", () => {
-        // création nouvel object, récupération contenu du produit et traduction de javascript en json//
-        let newItemAdded = new Object();
+        // // // création nouvel object, récupération contenu du produit et traduction de javascript en json//
         const contentName = document.querySelector(".product-sheet-description-title-name").textContent;
         const contentImg = document.querySelector(".product-sheet-photo-img").src;
         const contentPrice = document.querySelector(".product-sheet-description-title-price").textContent;
-        newItemAdded.name = contentName;
-        newItemAdded.img = contentImg;
-        newItemAdded.price = contentPrice;
         
+        let objProduct ={
+          name : contentName,
+          img : contentImg,
+          price : contentPrice,
+          quantity : 1,
+        }
+        let newItemAdded = JSON.stringify(objProduct);
+        //ajout d'un produit dans le localStorage//
+        localStorage.setItem("newItemAdded", newItemAdded);
         
-        localStorage.setItem('Produit ajouté', JSON.stringify(newItemAdded));
+        //Si déjà dans le localStorage alors afficher "produit ajouté"//
+        const alreadyAdded = localStorage.getItem("newItemAdded");
+        if(alreadyAdded){
+          document.getElementById("btn-add").textContent = "produit ajouté ! En ajouter un autre ?";
           console.log(localStorage);
-        
-        
-          
-         
-        });
-      
-    });
+        }
+        else{
+        }
+          })
+        //effacer le localStorage en cliquant sur annuler//
+        const inputCancel = document.getElementById("btn-cancel");
+        inputCancel.addEventListener("click", () => {
+          localStorage.clear(localStorage);
+          document.getElementById("btn-add").textContent = "Ajouter au panier !";
+          console.log(localStorage);
+        })
+      });
 }
 
 displayOneProduct(id);
@@ -104,16 +117,33 @@ function templateOneProduct(){
   article.appendChild(inputAddToBag);
   inputAddToBag.setAttribute("id", "btn-add");
   inputAddToBag.setAttribute("type", "button");
+
+  //ajout d'un bouton pour annuler l'ajout au panier//
+  const inputCancel = document.createElement('button');
+  article.appendChild(inputCancel);
+  inputCancel.setAttribute("id", "btn-cancel");
+  inputCancel.setAttribute("type", "button");
+  inputCancel.textContent = "x Annuler x";
+
   //ajout des options couleurs//
   const productColors = document.createElement("div");
   figcaption.appendChild(productColors);
   productColors.classList.add("product-colors");
   productColors.textContent = "Disponible dans les coloris suivants: ";
+  const options = document.createElement("select");
+  productColors.appendChild(options);
+  options.classList.add("colors");
+  const option = document.createElement("option");
+  options.appendChild(option);
+  option.setAttribute("placeholder", "choisir un pelage");
+  option.innerText = "Choisir un pelage";
+
 }
+
 
 function templateOptionsColors(){
   //ajout des options couleurs//
-  const productColorsBloc = document.createElement("div");
-  document.querySelector(".product-colors").appendChild(productColorsBloc);
-  productColorsBloc.classList.add("product-colors-box");
+  const optionColor = document.createElement("option");
+  document.querySelector(".colors").appendChild(optionColor);
+  optionColor.classList.add("option-color");
 }

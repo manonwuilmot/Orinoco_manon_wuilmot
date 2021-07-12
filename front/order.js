@@ -87,3 +87,15 @@ function templateOrder(){
 }
 templateOrder();
 
+//Affichage des produits venant du local storage//
+
+
+    console.log(localStorage);
+const contentRef = document.querySelector(".order-product-ref");
+const getName = window.localStorage.getItem("name");
+contentRef.innerHTML= "Référence : " + getName;
+
+const contentPrice = document.querySelector(".order-product-price");
+const getPrice = window.localStorage.getItem("price");
+contentPrice.textContent = "Prix unitaire : " + getPrice;
+

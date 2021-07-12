@@ -8,19 +8,12 @@
     align-items: center;
     @extend.typo;
     font-size : nth($font-size, 2);
-    &-box{
-
-        text-align: center;
-        width : 120px;
-        border-radius: 20px;
-        margin: 5px 10px;
-        border: $colour-light-gray solid 2px;
-        &:hover{
-            cursor: pointer;
-            background-color: $colour-light-gray;
-        }
-    }
 }
+.colors{
+    margin-left: 20px;
+    color :rgb(255, 81, 0);
+}
+
 
 .main-order{
     margin-top: 150px;
