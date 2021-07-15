@@ -38,6 +38,31 @@
   opacity: 0.8;
 }
 
+.btn-quantity {
+  width: 20px;
+  height: 20px;
+  background-color: #ff5100;
+  border: none;
+  opacity: 1;
+  transition: opacity 450ms ease-in-out;
+}
+.btn-quantity:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.btn-quantity-less {
+  width: 20px;
+  height: 20px;
+  background-color: #a5a5a5;
+  border: none;
+  opacity: 1;
+  transition: opacity 450ms ease-in-out;
+}
+.btn-quantity-less:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .header {
   box-shadow: 0px 10px 50px #b36e98;
   position: absolute;

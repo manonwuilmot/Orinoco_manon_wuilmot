@@ -13,15 +13,12 @@ function displayAllProducts() {
         main.appendChild(productSheet);
         productSheet.classList.add("product-sheet");
       }
-      //boucle pour multiplier le nombre de fiches produits par le nombre de produits présents dans l'API//
+      //boucle pour afficher tous les produits présents dans l'API//
       for (let i = 0; i < data.length; i++) {
         templateProduct(data[i]);
-      }
 
-      //création des éléments du DOM dans une boucle à partir du template d'une fiche produit//
-      const articles = document.querySelectorAll("article");
-
-      for (i = 0; i < articles.length; i++) {
+        //création des éléments du DOM //
+        const articles = document.querySelectorAll("article");
         const productSheetImage = document.createElement("figure");
         articles[i].appendChild(productSheetImage);
         productSheetImage.classList.add("product-sheet-photo");
@@ -30,10 +27,8 @@ function displayAllProducts() {
         const productSheetDescription = document.createElement("figcaption");
         articles[i].appendChild(productSheetDescription);
         productSheetDescription.classList.add("product-sheet-description");
-      }
-      const figcaption = document.querySelectorAll("figcaption");
+        const figcaption = document.querySelectorAll("figcaption");
 
-      for (i = 0; i < figcaption.length; i++) {
         //création élément title contenant le nom et le prix//
         const productSheetDescriptionTitle = document.createElement("div");
         figcaption[i].appendChild(productSheetDescriptionTitle);
@@ -51,13 +46,11 @@ function displayAllProducts() {
           ".product-sheet-description-text"
         );
         descriptions[i].innerHTML = data[i].description;
-      }
 
-      const divTitle = document.querySelectorAll(
-        "div.product-sheet-description-title"
-      );
+        const divTitle = document.querySelectorAll(
+          "div.product-sheet-description-title"
+        );
 
-      for (i = 0; i < divTitle.length; i++) {
         //création élément nom de l'ours en peluche//
         const productSheetDescriptionTitleName = document.createElement("div");
         divTitle[i].appendChild(productSheetDescriptionTitleName);
@@ -81,12 +74,10 @@ function displayAllProducts() {
           ".product-sheet-description-title-price"
         );
         prices[i].innerHTML = data[i].price / 100 + " euros";
-      }
 
-      //création élément image et lien de l'ours en peluche//
-      const figures = document.querySelectorAll("figure");
+        //création élément image et lien de l'ours en peluche//
+        const figures = document.querySelectorAll("figure");
 
-      for (i = 0; i < figures.length; i++) {
         const productLink = document.createElement("a");
         figures[i].appendChild(productLink);
         productLink.classList.add("product-sheet-photo-img");
@@ -110,4 +101,3 @@ displayAllProducts();
 //     document.querySelector("main")
 //     .innerText = "Oups, les ours en peluches ne sont plus ici. Merci de mettre à jour votre page.";
 // })
-
