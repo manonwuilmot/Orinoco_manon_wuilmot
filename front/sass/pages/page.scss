@@ -1,99 +1,171 @@
-.product-colors{
-    margin-right :20px; margin-left: 20px;
-    height : 100%;
+.page-product-sheet {
+  margin: 20px;
+  width: 55%;
+  height: 100%;
+  background-color: $color-nude;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  @include mobile {
+    width: 90%;
+  }
+  &-photo {
+    margin-top: 20px;
+    width: 90%;
+    height: 450px;
     display: flex;
-    flex-direction : row;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    @extend.typo;
-    font-size : nth($font-size, 2);
-}
-.colors{
-    margin-left: 20px;
-    color :rgb(255, 81, 0);
-}
+    overflow: hidden;
 
-
-.main-order{
-    margin-top: 150px;
-    width: 100%;
-    display : flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    &-title{
-        @extend .typo;
-        font-size: nth($font-size, 4);
-        color : $color-pink;
-        margin-left: 20px;
-        &-form{
-        @extend .typo;
-        font-size: nth($font-size, 4);
-        color : $color-orange;
-        margin-left: 20px;
-        }
+    &:hover {
+      cursor: pointer;
     }
-}
-ul{
-    list-style: none;
-    padding : 0;
-    margin-left: 20px; 
-    margin-right : 20px;
-}
-li{
-    padding: 0;
-    padding-top: 10px; padding-bottom : 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    &-img {
+      width: 100%;
+      transform: scale(1);
+      transition: transform 450ms ease-in-out;
+      @include mobile2 {
+        height: 100%;
+        width: auto;
+      }
+      &:hover {
+        transform: scale(1.15);
+      }
+    }
+  }
+  &-description {
+    margin: 30px;
+    &-text {
+      @extend .typo;
+      font-style: italic;
+      font-size: nth($font-size, 3);
+    }
+    &-title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+      color: $color-orange;
+      margin-bottom: 20px;
+      @extend .typo;
+      margin-top: 20px;
+      &-name {
+        font-weight: 900;
+        font-size: nth($font-size, 5);
+      }
+      &-price {
+        color: $color-pink;
+        font-weight: 900;
+        font-size: nth($font-size, 4);
+      }
+    }
+  }
 }
 
-.order{
-    &-list{
-        width : 90%;
-        height : 100%;
-        border: $color-pink solid 2px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        @extend .typo;
-    }  
+.product-colors {
+  margin-right: 20px;
+  margin-left: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  @extend.typo;
+  font-size: nth($font-size, 2);
 }
-.form{
-    padding-top: 10px; padding-bottom : 10px;
-    margin-left: 20px;
-    width : 90%;
-    height : 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
+.colors {
+  margin-left: 20px;
+  color: rgb(255, 81, 0);
+}
+
+.main-order {
+  margin-top: 150px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  &-title {
     @extend .typo;
+    font-size: nth($font-size, 4);
+    color: $color-pink;
+    margin-left: 20px;
+    &-form {
+      @extend .typo;
+      font-size: nth($font-size, 4);
+      color: $color-orange;
+      margin-left: 20px;
+    }
+  }
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+li {
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.order {
+  &-list {
+    width: 90%;
+    height: 100%;
     border: $color-pink solid 2px;
-    & div{
-        margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    @extend .typo;
+  }
+}
+.form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 20px;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  @extend .typo;
+  border: $color-pink solid 2px;
+  & div {
+    margin-left: 20px;
+  }
+
+  & input {
+    margin: 20px 0 20px 0px;
+    width: 300px;
+    border: $color-orange solid 2px;
+    border-radius: 5px;
+    padding: 5px;
+    &.input-submit {
+      width: 100%;
+      margin-left: 20 px;
+      background-color: rgb(255, 81, 0);
+      color: white;
+      padding: 5px;
+      border: none;
+      opacity: 1;
+      transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
     }
-    & input{
-        margin-left : 20px;
-        width : 300px;
-        border : $color-orange solid 2px;
-        border-radius: 5px;
-        padding : 5px;
-        &.input-submit{
-            margin-left: 0;
-            background-color:rgb(255, 81, 0);
-            color : white;
-            padding : 5px;
-            border : none;
-            opacity : 1;
-            transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
-            &:hover{
-                cursor: pointer;
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-        }
-    }
+  }
 }

@@ -12,41 +12,45 @@ function displayOneProduct(id) {
     })
 
     .then(function (data) {
+      //récupération du template de la page produit//
       templateOneProduct();
 
-      //affichages des données//
-      //affichage image//
-      document.querySelector(".product-sheet-photo-img").src = data.imageUrl;
+      //affichages des données provenant de l'API//
+      document.querySelector(".page-product-sheet-photo-img").src =
+        data.imageUrl;
       //affichage bouton avec prix dynamique//
       document.getElementById("btn-add").textContent =
         "Ajouter au panier pour " + data.price / 100 + " euros";
+      //affichage de la description du produit//
+      document.querySelector(".page-product-sheet-description-text").innerHTML =
+        data.description;
+      document.querySelector(
+        ".page-product-sheet-description-title-name"
+      ).innerHTML = data.name;
+      //affichage du prix//
+      document.querySelector(
+        ".page-product-sheet-description-title-price"
+      ).innerHTML = data.price / 100 + " euros";
+
       //Boucle pour affichage des options couleurs//
       for (let i = 0; i < data.colors.length; i++) {
         templateOptionsColors(data[i]);
         const options = document.querySelectorAll(".option-color");
         options[i].innerHTML = data.colors[i];
       }
-      //affichage de la description du produit//
-      document.querySelector(".product-sheet-description-text").innerHTML =
-        data.description;
-      document.querySelector(
-        ".product-sheet-description-title-name"
-      ).innerHTML = data.name;
-      //affichage du prix//
-      document.querySelector(
-        ".product-sheet-description-title-price"
-      ).innerHTML = data.price / 100 + " euros";
 
       // récupération des données dans le local storage quand on clique sur le bouton "AddToBag"//
       const inputAddToBag = document.getElementById("btn-add");
 
       inputAddToBag.addEventListener("click", () => {
-        // // // création nouvel object, récupération contenu du produit et traduction de javascript en json//
+        // indication "produit ajouté" pour l'utilisateur //
+        inputAddToBag.textContent = "Produit ajouté";
+        // // // création nouvel objet, récupération contenu du produit et traduction de javascript en json//
         const contentName = document.querySelector(
-          ".product-sheet-description-title-name"
+          ".page-product-sheet-description-title-name"
         ).textContent;
         const contentImg = document.querySelector(
-          ".product-sheet-photo-img"
+          ".page-product-sheet-photo-img"
         ).src;
         const contentPrice = data.price / 100;
         const contentId = data._id;
@@ -97,48 +101,50 @@ displayOneProduct(id);
 function templateOneProduct() {
   const main = document.querySelector("main");
   main.classList.add("main");
-  const productSheet = document.createElement("article");
-  main.appendChild(productSheet);
-  productSheet.classList.add("product-sheet");
+  const article = document.createElement("article");
+  main.appendChild(article);
+  article.classList.add("page-product-sheet");
 
-  const article = document.querySelector("article");
-  const productSheetImage = document.createElement("figure");
-  article.appendChild(productSheetImage);
-  productSheetImage.classList.add("product-sheet-photo");
+  const figure = document.createElement("figure");
+  article.appendChild(figure);
+  figure.classList.add("page-product-sheet-photo");
 
-  document.querySelector("figure");
-  const productSheetDescription = document.createElement("figcaption");
-  article.appendChild(productSheetDescription);
-  productSheetDescription.classList.add("product-sheet-description");
-
-  const figcaption = document.querySelector("figcaption");
-  const productSheetDescriptionTitle = document.createElement("div");
-  figcaption.appendChild(productSheetDescriptionTitle);
-  productSheetDescriptionTitle.classList.add("product-sheet-description-title");
-
-  const productSheetDescriptionText = document.createElement("p");
-  figcaption.appendChild(productSheetDescriptionText);
-  productSheetDescriptionText.classList.add("product-sheet-description-text");
-
-  const divTitle = document.querySelector(
-    "div.product-sheet-description-title"
-  );
-  const productSheetDescriptionTitleName = document.createElement("div");
-  divTitle.appendChild(productSheetDescriptionTitleName);
-  productSheetDescriptionTitleName.classList.add(
-    "product-sheet-description-title-name"
-  );
-
-  const productSheetDescriptionTitlePrice = document.createElement("div");
-  divTitle.appendChild(productSheetDescriptionTitlePrice);
-  productSheetDescriptionTitlePrice.classList.add(
-    "product-sheet-description-title-price"
-  );
-
-  const figure = document.querySelector("figure");
   const img = document.createElement("img");
   figure.appendChild(img);
-  img.classList.add("product-sheet-photo-img");
+  img.classList.add("page-product-sheet-photo-img");
+
+  const figcaption = document.createElement("div");
+  article.appendChild(figcaption);
+  figcaption.classList.add("page-product-sheet-description");
+
+  const divTitle = document.createElement("div");
+  figcaption.appendChild(divTitle);
+  divTitle.classList.add("page-product-sheet-description-title");
+
+  const description = document.createElement("p");
+  figcaption.appendChild(description);
+  description.classList.add("page-product-sheet-description-text");
+
+  const nameOfProduct = document.createElement("div");
+  divTitle.appendChild(nameOfProduct);
+  nameOfProduct.classList.add("page-product-sheet-description-title-name");
+
+  const priceOfProduct = document.createElement("div");
+  divTitle.appendChild(priceOfProduct);
+  priceOfProduct.classList.add("page-product-sheet-description-title-price");
+
+  //ajout des options couleurs//
+  const productColors = document.createElement("div");
+  article.appendChild(productColors);
+  productColors.classList.add("product-colors");
+  productColors.textContent = "Disponible dans les coloris suivants: ";
+  const options = document.createElement("select");
+  productColors.appendChild(options);
+  options.classList.add("colors");
+  const option = document.createElement("option");
+  options.appendChild(option);
+  option.setAttribute("placeholder", "choisir un pelage");
+  option.innerText = "Choisir un pelage";
 
   //ajout d'un bouton pour ajouter le produit au panier//
   const inputAddToBag = document.createElement("button");
@@ -152,19 +158,6 @@ function templateOneProduct() {
   inputCancel.setAttribute("id", "btn-cancel");
   inputCancel.setAttribute("type", "button");
   inputCancel.textContent = "x Annuler x";
-
-  //ajout des options couleurs//
-  const productColors = document.createElement("div");
-  figcaption.appendChild(productColors);
-  productColors.classList.add("product-colors");
-  productColors.textContent = "Disponible dans les coloris suivants: ";
-  const options = document.createElement("select");
-  productColors.appendChild(options);
-  options.classList.add("colors");
-  const option = document.createElement("option");
-  options.appendChild(option);
-  option.setAttribute("placeholder", "choisir un pelage");
-  option.innerText = "Choisir un pelage";
 }
 
 function templateOptionsColors() {
