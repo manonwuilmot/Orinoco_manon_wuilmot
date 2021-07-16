@@ -71,6 +71,7 @@
   left: 0;
   height: 120px;
   width: 100%;
+  overflow: hidden;
   background: #f3e9f1;
   display: flex;
   flex-direction: row;
@@ -80,6 +81,11 @@
 .header-logo {
   height: 120px;
   margin-left: 20px;
+}
+@media screen and (max-width: 950px) {
+  .header-logo {
+    height: 100px;
+  }
 }
 .header-logo-img {
   height: 100%;
@@ -107,9 +113,24 @@
 
 figure {
   margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+figure a {
+  border-radius: 20px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product-sheet {
+  border-radius: 30px;
   margin: 20px;
   width: 45%;
   height: 100%;
@@ -118,8 +139,9 @@ figure {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 20px;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 950px) {
   .product-sheet {
     width: 100%;
   }
@@ -127,7 +149,7 @@ figure {
 .product-sheet-photo {
   margin-top: 20px;
   width: 90%;
-  height: 270px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,8 +170,6 @@ figure {
 .product-sheet-description-text {
   font-style: italic;
   font-size: 0.8rem;
-  margin-left: 20px;
-  margin-right: 20px;
 }
 .product-sheet-description-title {
   display: flex;
@@ -157,7 +177,8 @@ figure {
   justify-content: space-between;
   align-items: center;
   color: #d68234;
-  margin: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .product-sheet-description-title-name {
   font-weight: 900;

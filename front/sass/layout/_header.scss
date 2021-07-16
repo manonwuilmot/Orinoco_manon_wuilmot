@@ -1,29 +1,35 @@
-.header{
-    box-shadow: 0px 10px 50px $color-pink;
-    position: absolute;
-    top: 0; right: 0; left: 0;
+.header {
+  box-shadow: 0px 10px 50px $color-pink;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 120px;
+  width: 100%;
+  overflow: hidden;
+  background: $color-nude;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  &-logo {
     height: 120px;
-    width: 100%;
-    background: $color-nude;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    &-logo{
-        height: 120px;
-        margin-left: 20px;
-        &-img{
-           height : 100%;
-        }
+    margin-left: 20px;
+    @include mobile {
+      height: 100px;
     }
-    &-shopping-bag{
-        font-size: nth($font-size, 7);
-        color: $color-pink;
-        margin-right: 40px;
-        transition: transform 450ms ease-in-out;
-        &:hover{
-            cursor: pointer;
-            transform: scale(1.15);
-        }
+    &-img {
+      height: 100%;
     }
+  }
+  &-shopping-bag {
+    font-size: nth($font-size, 7);
+    color: $color-pink;
+    margin-right: 40px;
+    transition: transform 450ms ease-in-out;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.15);
+    }
+  }
 }

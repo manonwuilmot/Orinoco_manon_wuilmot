@@ -1,19 +1,19 @@
-$font-size: 0.7rem 0.8rem 1rem 1.5rem 2rem 3rem 4.5rem 5rem; 
+$font-size: 0.7rem 0.8rem 1rem 1.5rem 2rem 3rem 4.5rem 5rem;
 $font-weight: 100, 200, 300, 500, 700;
 
-
-@mixin shadow($colourshadow){
-    box-shadow: 0 0 20px $colourshadow;
+@mixin shadow($colourshadow) {
+  box-shadow: 0 0 20px $colourshadow;
 }
-@mixin lightshadow{
-    box-shadow: 0 0 20px rgb(189, 189, 189)
+@mixin lightshadow {
+  box-shadow: 0 0 20px rgb(189, 189, 189);
 }
 
-@mixin mobile{
-    @media screen and(max-width: map-get($breakpoints, mobile)){
-@content;
-    }
-        }
+@mixin mobile {
+  @media screen and(max-width: map-get($breakpoints, mobile)) {
+    @content;
+  }
+}
 
-$breakpoints: (mobile: 500px);
-
+$breakpoints: (
+  mobile: 950px,
+);
