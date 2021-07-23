@@ -1,10 +1,14 @@
 //Création éléments mise en page//
 const main = document.querySelector("main");
 main.classList.add("main-order");
-let orderTitle = document.createElement("h1");
-main.appendChild(orderTitle);
-orderTitle.classList.add("main-order-title");
-orderTitle.innerHTML = "Résumé de ma commande : ";
+
+//Création formulaire de contact//
+function templateForm() {
+  const main = document.querySelector("main");
+  main.innerHTML =
+    '<h1 class="main-order-title"></h1><h2 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-name"><label for="name">Entrer votre nom :  </label><input placeholder="Entrer votre nom ici"<required></div><div class="form-surname"><label for="name">Entrer votre prénom :  </label><input placeholder="Entrer votre prénom ici" required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input placeholder="Entrer votre mail ici"></div><div class="form-submit"><input class="input-submit" type="submit" value="Envoyer"></input></div></form>';
+}
+templateForm();
 
 //fonction pour créer un template d'un produit ajouté au panier//
 function templateOrder() {
@@ -41,119 +45,81 @@ function templateOrder() {
 
 let alreadyAdded = JSON.parse(localStorage.getItem("productsInBag"));
 
-//fonction pour afficher tous les produits stockés dans le localStorage//
-function displayAllProductsInBag() {
+//condition pour afficher les produits//
+//si le panier existe déjà dans le local storage alors on récupère les produits et on affiche le formulaire de contact//
+if (alreadyAdded) {
   //pour chaque produit présent dans le localStorage, ajouter une nouvelle ligne//
   for (let i = 0; i < alreadyAdded.length; i++) {
-    console.log(alreadyAdded.length);
-    templateOrder(alreadyAdded[i]);
-    //si déjà présent dans le localStorage, remplir les informations relatives au produit//
-    if (alreadyAdded) {
-      //Affichage des produits venant du local storage dans le panier//
-      const contentRef = document.querySelectorAll(".order-product-ref");
-      const getItem = JSON.parse(localStorage.getItem("productsInBag"));
-      contentRef[i].textContent = "Référence du produit : " + getItem[i].name;
-      const contentQuantity = document.querySelectorAll(
-        ".order-product-quantity"
-      );
-      contentQuantity[i].textContent = getItem[i].quantity;
-      const contentPrice = document.querySelectorAll(".order-product-price");
-      contentPrice[i].textContent = getItem[i].price;
-      let contentTotalPrice = document.querySelectorAll(".order-product-total");
-      let quantity = document.querySelector(
-        ".order-product-quantity"
-      ).textContent;
-      contentTotalPrice[i].textContent =
-        "Prix total : " + quantity * getItem[i].price + " euros";
-      //sinon afficher "panier vide"//
-    } else {
-      document.querySelector(".order-list").innerHTML = "<li> Panier vide</li>";
-    }
+    templateOrder();
+    //Affichage des données des produits venant du local storage dans le panier//
+    const ref = document.querySelectorAll(".order-product-ref");
+    const productInBag = JSON.parse(localStorage.getItem("productsInBag"));
+    ref[i].textContent = "Référence du produit : " + productInBag[i].name;
+    const quantities = document.querySelectorAll(".order-product-quantity");
+    quantities[i].textContent = productInBag[i].quantity;
+    const priceOfProduct = document.querySelectorAll(".order-product-price");
+    priceOfProduct[i].textContent = productInBag[i].price;
+    const totalPrice = document.querySelectorAll(".order-product-total");
+    totalPrice[i].textContent =
+      "Prix total : " +
+      productInBag[i].price * productInBag[i].quantity +
+      " euros";
   }
+} else {
+  //sinon afficher panier vide//
+  console.log("Panier vide");
+  document.querySelector(".main-order-title").textContent = "Panier vide";
 }
-displayAllProductsInBag();
 
-//condition pour afficher le contenu du panier ou alors panier vide//
-let j = 1;
-//incrémenter la quantité en cliquant sur le bouton quantité et changement du prix total//
+///Incrémenter et décrémenter la quantité d'un produit///
+//incrémenter la quantité en cliquant sur le bouton quantité + et changement du prix total//
+let quantity = 1;
 let inputQuantity = document.querySelectorAll(".btn-quantity");
-for (let i = 0; i < alreadyAdded.length; i++) {
-  inputQuantity[i].addEventListener("click", () => {
-    j++;
-    let contentQuantity = document.querySelectorAll(".order-product-quantity");
-    contentQuantity[i].textContent = j;
+let numberOfProducts = document.querySelectorAll(".order-list");
+let quantities = document.querySelectorAll(".order-product-quantity");
+
+for (
+  let indexOfProduct = 0;
+  indexOfProduct < numberOfProducts.length;
+  indexOfProduct++
+) {
+  inputQuantity[indexOfProduct].addEventListener("click", () => {
+    quantity++;
+    quantities[indexOfProduct].textContent = quantity;
+    //changement du prix total//
+    let totalPrice = document.querySelectorAll(".order-product-total");
+    let price = document.querySelectorAll(".order-product-price");
+    totalPrice[indexOfProduct].textContent =
+      "Prix total : " + quantity * price[indexOfProduct].textContent + " euros";
   });
-  let inputQuantityLess = document.querySelectorAll(".btn-quantity-less");
-  //Décrémenter la quantité en cliquant sur le bouton - et changement de prix//
-  inputQuantityLess[i].addEventListener("click", () => {
-    if (j > 0) {
-      j--;
-      let contentQuantity = document.querySelectorAll(
-        ".order-product-quantity"
-      );
-      contentQuantity[i].textContent = j;
+}
+
+//Décrémenter la quantité en cliquant sur le bouton - et changement de prix//
+let inputQuantityLess = document.querySelectorAll(".btn-quantity-less");
+
+for (
+  let indexOfProduct = 0;
+  indexOfProduct < numberOfProducts.length;
+  indexOfProduct++
+) {
+  inputQuantityLess[indexOfProduct].addEventListener("click", () => {
+    quantity--;
+    //si la quantité est supérieure à 0, afficher la nouvelle quantité//
+    if (quantity > 0) {
+      quantities[indexOfProduct].textContent = quantity;
+      let totalPrice = document.querySelectorAll(".order-product-total");
+      let price = document.querySelectorAll(".order-product-price");
+      totalPrice[indexOfProduct].textContent =
+        "Prix total : " +
+        quantity * price[indexOfProduct].textContent +
+        " euros";
     }
-    //si la quantité est en dessous de 0, afficher panier vide.
+    //sinon si la quantité est en dessous de 0, suppression de la ligne//
     else {
       location.reload;
       localStorage.clear(Storage);
-      let orderTitle = document.querySelector("h1");
-      orderTitle.textContent = "Panier vide";
+      let deleateProduct = document.querySelector(".order-list");
+      deleateProduct.innerHTML = "";
     }
   });
 }
-
-//création des éléments du formulaire de contact//
-let formTitle = document.createElement("h2");
-main.appendChild(formTitle);
-formTitle.classList.add("main-order-title-form");
-formTitle.innerHTML = "Mes informations à compléter : ";
-const form = document.createElement("form");
-main.appendChild(form);
-form.classList.add("form");
-form.setAttribute("method", "get");
-
-const divFormName = document.createElement("div");
-divFormName.classList.add("form-name");
-form.appendChild(divFormName);
-const labelName = document.createElement("label");
-divFormName.appendChild(labelName);
-labelName.setAttribute("for", "name");
-labelName.innerHTML = "Entrer votre nom : ";
-const inputName = document.createElement("input");
-divFormName.appendChild(inputName);
-inputName.setAttribute("placeholder", "Entrer votre nom ici");
-inputName.setAttribute("required", "");
-
-const divFormSurname = document.createElement("div");
-divFormSurname.classList.add("form-surname");
-form.appendChild(divFormSurname);
-const labelSurname = document.createElement("label");
-divFormSurname.appendChild(labelSurname);
-labelSurname.setAttribute("for", "name");
-labelSurname.innerHTML = "Entrer votre prénom : ";
-const inputSurname = document.createElement("input");
-divFormSurname.appendChild(inputSurname);
-inputSurname.setAttribute("placeholder", "Entrer votre prénom ici");
-inputSurname.setAttribute("required", "");
-
-const divFormMail = document.createElement("div");
-divFormMail.classList.add("form-mail");
-form.appendChild(divFormMail);
-const labelMail = document.createElement("label");
-divFormMail.appendChild(labelMail);
-labelMail.setAttribute("for", "mail");
-labelMail.innerHTML = "Entrer votre adresse mail : ";
-const inputMail = document.createElement("input");
-divFormMail.appendChild(inputMail);
-inputMail.setAttribute("placeholder", "Entrer votre mail ici");
-inputName.setAttribute("required", "");
-
-const divFormSubmit = document.createElement("div");
-divFormSubmit.classList.add("form-submit");
-form.appendChild(divFormSubmit);
-const inputSubmit = document.createElement("input");
-divFormSubmit.appendChild(inputSubmit);
-inputSubmit.classList.add("input-submit");
-inputSubmit.setAttribute("type", "submit");
-inputSubmit.setAttribute("value", "Envoyer");

@@ -55,7 +55,7 @@ function displayOneProduct(id) {
         const contentPrice = data.price / 100;
         const contentId = data._id;
 
-        let product = {
+        let basket = {
           name: contentName,
           img: contentImg,
           price: contentPrice,
@@ -64,25 +64,36 @@ function displayOneProduct(id) {
         };
 
         function addItemToCart() {
-          let products = JSON.parse(
+          let productsInBag = JSON.parse(
             localStorage.getItem("productsInBag") || "[]"
           );
-
-          products.push(product);
-          localStorage.setItem("productsInBag", JSON.stringify(products));
-          console.log(product.name);
+          productsInBag.push(basket);
+          localStorage.setItem("productsInBag", JSON.stringify(productsInBag));
         }
 
         // Si déjà dans le localStorage alors afficher "Nouveau produit ajouté"//
         let alreadyAdded = JSON.parse(localStorage.getItem("productsInBag"));
-        i = 0;
-        if (alreadyAdded && alreadyAdded[i].name === contentName) {
-          console.log("Le panier contient déjà un ourson");
+
+        if (alreadyAdded) {
+          console.log("Le panier contient déjà des articles");
+          popupConfirmation();
+          let i = 0;
+          if (alreadyAdded[i].name == contentName) {
+            console.log("Cet article est déjà dans le panier!");
+            let quantity = alreadyAdded[i].quantity;
+            quantity += 1;
+
+            console.log(quantity);
+          } else {
+            addItemToCart();
+          }
         }
+
         //Sinon initialiser un nouvel objet dans lequel stocker les données//
         else {
           console.log("Le panier va être initialisé");
           addItemToCart();
+          popupConfirmation();
         }
       });
 
@@ -93,6 +104,23 @@ function displayOneProduct(id) {
         document.getElementById("btn-add").textContent = "Ajouter au panier !";
       });
     });
+}
+function popupConfirmation() {
+  const contentName = document.querySelector(
+    ".page-product-sheet-description-title-name"
+  ).textContent;
+
+  if (
+    window.confirm(
+      ` ${contentName} a bien été ajouté au panier. 
+      Consulter le panier OK ou 
+      Revenir à l'accueil ANNULER`
+    )
+  ) {
+    window.location.href = "order.html";
+  } else {
+    window.location.href = "index.html";
+  }
 }
 
 displayOneProduct(id);
