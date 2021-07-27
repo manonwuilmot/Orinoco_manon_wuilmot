@@ -61,7 +61,7 @@ if (cart) {
   titleOrderList.classList.add("title-order-list");
   main.appendChild(titleOrderList);
   titleOrderList.innerHTML =
-    '<li class="title-order-product-ref">Réf du produit</li><li class="title-order-product-quantity">Quantité</li><li class="title-order-product-price">Prix unitaire en euros</li><li class="title-order-product-total">Prix total en euros</li>';
+    '<li class="title-order-product-ref">Réf du produit</li><li class="title-order-product-quantity">Quantité</li><li class="title-order-product-price">Prix unitaire</li><li class="title-order-product-total">Prix total</li>';
 
   //pour chaque produit présent dans le localStorage, ajouter une nouvelle ligne//
   for (let i = 0; i < cart.length; i++) {

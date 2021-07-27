@@ -370,7 +370,7 @@ figure a {
   flex-wrap: nowrap;
 }
 .title-order-list li {
-  width: 70px;
+  width: 50px;
 }
 
 ul {
@@ -406,7 +406,12 @@ li {
   align-items: center;
 }
 .order-list li {
-  width: 70px;
+  width: 50px;
+}
+@media screen and (max-width: 1050px) {
+  .order-list li {
+    width: 40px;
+  }
 }
 
 .form {
