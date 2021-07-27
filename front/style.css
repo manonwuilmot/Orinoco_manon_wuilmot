@@ -1,4 +1,4 @@
-.typo, .form, .order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #btn-cancel, #btn-add {
+.typo, .pop-up-confirmation, .form, .order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel, #btn-add {
   font-family: "Roboto", sans-serif;
 }
 
@@ -63,6 +63,48 @@
   opacity: 0.8;
 }
 
+#gotobag {
+  background-color: #ff5100;
+  border: none;
+  border-radius: 20px;
+  width: 50%;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding: 10px;
+  transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
+}
+#gotobag:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.pop-up-links {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+#continueshopping {
+  background-color: #d68234;
+  border: none;
+  border-radius: 20px;
+  width: 50%;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
+}
+#continueshopping:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
 .header {
   box-shadow: 0px 10px 50px #b36e98;
   position: absolute;
@@ -90,6 +132,11 @@
 .header-logo-img {
   height: 100%;
 }
+@media screen and (max-width: 1050px) {
+  .header-logo-img {
+    height: 50%;
+  }
+}
 .header-shopping-bag {
   font-size: 4.5rem;
   color: #b36e98;
@@ -102,7 +149,7 @@
 }
 
 .main {
-  margin-top: 200px;
+  margin-top: 150px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -193,7 +240,7 @@ figure a {
 
 .page-product-sheet {
   margin: 20px;
-  width: 55%;
+  width: 45%;
   height: 100%;
   background-color: #f3e9f1;
   display: flex;
@@ -204,13 +251,13 @@ figure a {
 }
 @media screen and (max-width: 1050px) {
   .page-product-sheet {
-    width: 90%;
+    width: 100%;
   }
 }
 .page-product-sheet-photo {
   margin-top: 20px;
   width: 90%;
-  height: 450px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -285,10 +332,24 @@ figure a {
   justify-content: flex-start;
   align-items: flex-start;
 }
+@media screen and (max-width: 1050px) {
+  .main-order {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .main-order-title {
   font-size: 1.5rem;
   color: #b36e98;
   margin-left: 20px;
+}
+@media screen and (max-width: 1050px) {
+  .main-order-title {
+    margin-left: 0;
+  }
 }
 .main-order-title-form {
   font-size: 1.5rem;
@@ -301,6 +362,11 @@ ul {
   padding: 0;
   margin-left: 20px;
   margin-right: 20px;
+}
+@media screen and (max-width: 1050px) {
+  ul {
+    margin: 0;
+  }
 }
 
 li {
@@ -321,6 +387,13 @@ li {
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (max-width: 1050px) {
+  .order-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .form {
   padding-top: 10px;
@@ -334,12 +407,29 @@ li {
   align-items: flex-start;
   border: #b36e98 solid 2px;
 }
+@media screen and (max-width: 1050px) {
+  .form {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .form div {
   margin-left: 20px;
 }
+@media screen and (max-width: 1050px) {
+  .form div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+}
 .form input {
   margin: 20px 0 20px 0px;
-  width: 300px;
+  width: 60%;
   border: #d68234 solid 2px;
   border-radius: 5px;
   padding: 10px;
@@ -349,7 +439,7 @@ li {
   margin-left: 20 px;
   background-color: #ff5100;
   color: white;
-  padding: 5px;
+  padding: 10px;
   border: none;
   opacity: 1;
   transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
@@ -358,6 +448,28 @@ li {
   cursor: pointer;
   transform: scale(1.1);
   opacity: 0.8;
+}
+
+.pop-up-confirmation {
+  padding: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 250px;
+  width: 80%;
+  height: 300px;
+  background-color: #f1dee1;
+  border: #b36e98 solid 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+@media screen and (max-width: 1050px) {
+  .pop-up-confirmation {
+    top: 200px;
+    width: 80%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

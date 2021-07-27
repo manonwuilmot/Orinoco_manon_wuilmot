@@ -54,7 +54,7 @@ if (cart) {
   const titleOrder = document.createElement("h1");
   main.appendChild(titleOrder);
   titleOrder.classList.add("main-order-title");
-  titleOrder.innerText = "Détails de ma commande : ";
+  titleOrder.innerText = "Détails de ma commande";
   //pour chaque produit présent dans le localStorage, ajouter une nouvelle ligne//
   for (let i = 0; i < cart.length; i++) {
     templateOrder();
@@ -68,6 +68,7 @@ if (cart) {
     ref[i].textContent = "Référence du produit : " + cart[i].name;
     quantities[i].textContent = cart[i].quantity;
     priceOfProduct[i].textContent = cart[i].price;
+
     totalPrice[i].textContent =
       "Prix total : " + cart[i].price * cart[i].quantity + " euros";
   }
