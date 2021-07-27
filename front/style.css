@@ -1,4 +1,4 @@
-.typo, .pop-up-confirmation, .form, .order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel, #btn-add {
+.typo, .pop-up-confirmation, .form, .order-list, .title-order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel, #btn-add {
   font-family: "Roboto", sans-serif;
 }
 
@@ -41,6 +41,7 @@
 .btn-quantity {
   width: 20px;
   height: 20px;
+  margin: 0;
   background-color: #ff5100;
   border: none;
   opacity: 1;
@@ -337,7 +338,7 @@ figure a {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
 }
@@ -357,16 +358,24 @@ figure a {
   margin-left: 20px;
 }
 
+.title-order-list {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.title-order-list li {
+  width: 70px;
+}
+
 ul {
   list-style: none;
   padding: 0;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-@media screen and (max-width: 1050px) {
-  ul {
-    margin: 0;
-  }
 }
 
 li {
@@ -377,8 +386,17 @@ li {
   margin-right: 20px;
 }
 
+.order-product-selectquantity {
+  text-align: center;
+}
+
+.order-product-quantity {
+  text-align: center;
+  padding: 10px;
+}
+
 .order-list {
-  width: 90%;
+  width: 100%;
   height: 100%;
   border: #b36e98 solid 2px;
   display: flex;
@@ -387,16 +405,12 @@ li {
   justify-content: space-between;
   align-items: center;
 }
-@media screen and (max-width: 1050px) {
-  .order-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.order-list li {
+  width: 70px;
 }
 
 .form {
-  padding-top: 10px;
+  padding-top: 30px;
   padding-bottom: 10px;
   margin-left: 20px;
   width: 90%;
@@ -418,6 +432,8 @@ li {
 }
 .form div {
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (max-width: 1050px) {
   .form div {
@@ -429,7 +445,7 @@ li {
 }
 .form input {
   margin: 20px 0 20px 0px;
-  width: 60%;
+  width: 250px;
   border: #d68234 solid 2px;
   border-radius: 5px;
   padding: 10px;

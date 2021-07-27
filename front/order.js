@@ -16,32 +16,34 @@ function templateOrder() {
   const orderUl = document.createElement("ul");
   main.appendChild(orderUl);
   orderUl.classList.add("order-list");
-  const refProduct = document.createElement("li");
-  orderUl.appendChild(refProduct);
-  refProduct.classList.add("order-product-ref");
-  refProduct.innerHTML = "Référence du produit : ";
+  orderUl.innerHTML =
+    '<li class="order-product-ref"></li><li class="order-product-selectquantity"><button class="btn-quantity-less">-</button><div class="order-product-quantity"></div><button class="btn-quantity">+</button></li><li class="order-product-price"></li><li class="order-product-total"></li>';
 
-  const btnQuantityLess = document.createElement("button");
-  orderUl.appendChild(btnQuantityLess);
-  btnQuantityLess.classList.add("btn-quantity-less");
-  btnQuantityLess.textContent = "-";
-  const quantityProduct = document.createElement("li");
-  orderUl.appendChild(quantityProduct);
-  quantityProduct.classList.add("order-product-quantity");
-  const btnQuantity = document.createElement("button");
-  orderUl.appendChild(btnQuantity);
-  btnQuantity.classList.add("btn-quantity");
-  btnQuantity.textContent = "+";
+  //   const refProduct = document.createElement("li");
+  //   orderUl.appendChild(refProduct);
+  //   refProduct.classList.add("order-product-ref");
+  //   refProduct.innerHTML = "Référence du produit : ";
 
-  const priceProduct = document.createElement("li");
-  orderUl.appendChild(priceProduct);
-  priceProduct.classList.add("order-product-price");
-  priceProduct.innerHTML = "Prix unitaire: ";
+  //   const quantityProduct = document.createElement("li");
+  //   const btnQuantityLess = document.createElement("button");
+  //   const btnQuantity = document.createElement("button");
 
-  const orderTotal = document.createElement("li");
-  orderUl.appendChild(orderTotal);
-  orderTotal.classList.add("order-product-total");
-  orderTotal.innerHTML = "Prix total : ";
+  //   orderUl.appendChild(btnQuantityLess);
+  //   btnQuantityLess.classList.add("btn-quantity-less");
+  //   btnQuantityLess.textContent = "-";
+  //   orderUl.appendChild(quantityProduct);
+  //   quantityProduct.classList.add("order-product-quantity");
+  //   orderUl.appendChild(btnQuantity);
+  //   btnQuantity.classList.add("btn-quantity");
+  //   btnQuantity.textContent = "+";
+
+  //   const priceProduct = document.createElement("li");
+  //   orderUl.appendChild(priceProduct);
+  //   priceProduct.classList.add("order-product-price");
+
+  //   const orderTotal = document.createElement("li");
+  //   orderUl.appendChild(orderTotal);
+  //   orderTotal.classList.add("order-product-total");
 }
 
 let cart = JSON.parse(localStorage.getItem("cart"));
@@ -54,7 +56,13 @@ if (cart) {
   const titleOrder = document.createElement("h1");
   main.appendChild(titleOrder);
   titleOrder.classList.add("main-order-title");
-  titleOrder.innerText = "Détails de ma commande";
+  titleOrder.textContent = "Détails de ma commande";
+  const titleOrderList = document.createElement("ul");
+  titleOrderList.classList.add("title-order-list");
+  main.appendChild(titleOrderList);
+  titleOrderList.innerHTML =
+    '<li class="title-order-product-ref">Réf du produit</li><li class="title-order-product-quantity">Quantité</li><li class="title-order-product-price">Prix unitaire en euros</li><li class="title-order-product-total">Prix total en euros</li>';
+
   //pour chaque produit présent dans le localStorage, ajouter une nouvelle ligne//
   for (let i = 0; i < cart.length; i++) {
     templateOrder();
@@ -65,12 +73,11 @@ if (cart) {
     const priceOfProduct = document.querySelectorAll(".order-product-price");
     const totalPrice = document.querySelectorAll(".order-product-total");
 
-    ref[i].textContent = "Référence du produit : " + cart[i].name;
+    ref[i].textContent = cart[i].name;
     quantities[i].textContent = cart[i].quantity;
     priceOfProduct[i].textContent = cart[i].price;
 
-    totalPrice[i].textContent =
-      "Prix total : " + cart[i].price * cart[i].quantity + " euros";
+    totalPrice[i].textContent = cart[i].price * cart[i].quantity + " €";
   }
 } else {
   //sinon afficher panier vide//
@@ -96,7 +103,7 @@ for (
     let totalPrice = document.querySelectorAll(".order-product-total");
     let price = document.querySelectorAll(".order-product-price");
     totalPrice[indexOfProduct].textContent =
-      "Prix total : " + quantity * price[indexOfProduct].textContent + " euros";
+      quantity * price[indexOfProduct].textContent + " €";
   });
 }
 
@@ -116,9 +123,7 @@ for (
       let totalPrice = document.querySelectorAll(".order-product-total");
       let price = document.querySelectorAll(".order-product-price");
       totalPrice[indexOfProduct].textContent =
-        "Prix total : " +
-        quantity * price[indexOfProduct].textContent +
-        " euros";
+        quantity * price[indexOfProduct].textContent + " euros";
     }
     //sinon si la quantité est en dessous de 0, suppression de la ligne//
     else {

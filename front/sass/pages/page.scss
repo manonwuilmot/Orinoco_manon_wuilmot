@@ -88,7 +88,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
   margin-top: 150px;
@@ -113,14 +113,25 @@
     }
   }
 }
+.title-order-list {
+  @extend .typo;
+  font-size: nth($font-size, 3);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  & li {
+    width: 70px;
+  }
+}
+
 ul {
   list-style: none;
   padding: 0;
-  margin-left: 20px;
-  margin-right: 20px;
-  @include mobile {
-    margin: 0;
-  }
 }
 li {
   padding: 0;
@@ -129,15 +140,16 @@ li {
   margin-left: 20px;
   margin-right: 20px;
 }
-
+.order-product-selectquantity {
+  text-align: center;
+}
+.order-product-quantity {
+  text-align: center;
+  padding: 10px;
+}
 .order {
   &-list {
-    @include mobile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    width: 90%;
+    width: 100%;
     height: 100%;
     border: $color-pink solid 2px;
     display: flex;
@@ -146,6 +158,9 @@ li {
     justify-content: space-between;
     align-items: center;
     @extend .typo;
+    & li {
+      width: 70px;
+    }
   }
 }
 
@@ -157,7 +172,7 @@ li {
     flex-direction: column;
     align-items: center;
   }
-  padding-top: 10px;
+  padding-top: 30px;
   padding-bottom: 10px;
   margin-left: 20px;
   width: 90%;
@@ -171,6 +186,9 @@ li {
 
   & div {
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+
     @include mobile {
       display: flex;
       flex-direction: column;
@@ -181,7 +199,7 @@ li {
 
   & input {
     margin: 20px 0 20px 0px;
-    width: 60%;
+    width: 250px;
     border: $color-orange solid 2px;
     border-radius: 5px;
     padding: 10px;
