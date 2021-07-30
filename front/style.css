@@ -1,4 +1,5 @@
-.typo, .pop-up-confirmation, .form, .order-list, .title-order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel, #btn-add {
+.typo, .pop-up-confirmation, .form, .order-list, .title-order-total, .title-order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel,
+.btn-deleate-cart, #btn-add {
   font-family: "Roboto", sans-serif;
 }
 
@@ -21,7 +22,8 @@
   opacity: 0.8;
 }
 
-#btn-cancel {
+#btn-cancel,
+.btn-deleate-cart {
   border: none;
   width: 30%;
   background-color: #fc9160;
@@ -32,7 +34,8 @@
   font-weight: bold;
   transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
 }
-#btn-cancel:hover {
+#btn-cancel:hover,
+.btn-deleate-cart:hover {
   cursor: pointer;
   transform: scale(1.1);
   opacity: 0.8;
@@ -345,23 +348,20 @@ figure a {
 .main-order-title {
   font-size: 1.5rem;
   color: #b36e98;
-  margin-left: 20px;
-}
-@media screen and (max-width: 1050px) {
-  .main-order-title {
-    margin-left: 0;
-  }
 }
 .main-order-title-form {
   font-size: 1.5rem;
   color: #d68234;
-  margin-left: 20px;
 }
 
 .title-order-list {
+  background-color: #b36e98;
   font-size: 1rem;
+  font-weight: 900;
+  color: white;
   margin: 0;
-  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -371,6 +371,19 @@ figure a {
 }
 .title-order-list li {
   width: 50px;
+}
+
+.title-order-total {
+  text-align: center;
+  border: #ff5100 solid 2px;
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 20px;
+  width: 50%;
+}
+.title-order-total span {
+  color: #ff5100;
+  font-weight: 900;
 }
 
 ul {
@@ -414,11 +427,21 @@ li {
   }
 }
 
+.order-product-photo {
+  height: 60px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.order-product-img {
+  height: 100%;
+}
+
 .form {
   padding-top: 30px;
   padding-bottom: 10px;
-  margin-left: 20px;
-  width: 90%;
   height: 100%;
   display: flex;
   flex-direction: column;
