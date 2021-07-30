@@ -160,13 +160,12 @@ btnSubmit.addEventListener("click", () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(contact),
+      body: JSON.stringify({ contact }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         window.location.href = "confirm.html";
-        localStorage.setItem("order", JSON.stringify(data));
+        localStorage.setItem("order", JSON.stringify(contact));
       })
       .catch((erreur) => console.log("erreur : " + erreur));
   } else {
