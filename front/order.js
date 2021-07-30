@@ -8,7 +8,7 @@ function templateForm() {
   const body = document.querySelector("body");
   body.appendChild(article);
   article.innerHTML =
-    '<h1 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-name"><label for="name">Entrer votre nom :  </label><input placeholder="Entrer votre nom ici"required></div><div class="form-surname"><label for="name">Entrer votre prénom :  </label><input placeholder="Entrer votre prénom ici" required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input placeholder="Entrer votre mail ici" required></div><div class="form-submit"><a href="confirm.html" class="confirm"><input class="input-submit" type="submit" value="Envoyer"></input></a></div></form>';
+    '<h1 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-lastname"><label for="name">Entrer votre nom :  </label><input id="lastname" placeholder="Entrer votre nom ici"required></div><div class="form-firstname"><label for="name">Entrer votre prénom :  </label><input id="firstname" placeholder="Entrer votre prénom ici" required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input id="mail" placeholder="Entrer votre mail ici" required></div><div class="form-submit"><a href="confirm.html" class="confirm"><button id="btn-submit">Envoyer</button></a></div></form>';
 }
 
 //fonction pour créer un template d'un produit ajouté au panier//
@@ -131,3 +131,47 @@ for (let i = 0; i < cart.length; i++) {
     }
   });
 }
+
+const btnSubmit = document.getElementById("btn-submit");
+
+//validation du formulaire et envoie en POST
+
+const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
+
+const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+
+btnSubmit.addEventListener("click", () => {
+  // on prépare les infos pour l'envoie en POST
+  let contact = {
+    firstName: document.getElementById("firstname").value,
+    lastName: document.getElementById("lastname").value,
+    email: document.getElementById("mail").value,
+  };
+  // on verifie que le formulaire est correctement rempli
+  if (
+    (regexMail.test(contact.email) == true) &
+    (regexName.test(contact.firstName) == true) &
+    (regexName.test(contact.lastName) == true)
+  ) {
+    // on envoie en POST
+    fetch("http://localhost:3000/api/teddies/order", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        window.location.href = "confirm.html";
+        localStorage.setItem("order", JSON.stringify(data));
+      })
+      .catch((erreur) => console.log("erreur : " + erreur));
+  } else {
+    alert(
+      "Veuillez renseigner la totalité du formulaire pour valider votre commande."
+    );
+  }
+});

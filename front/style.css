@@ -1,4 +1,4 @@
-.typo, .pop-up-confirmation, .form, .order-list, .title-order-total, .title-order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel,
+.typo, .main-confirm, .pop-up-confirmation, .form, .order-list, .title-order-total, .title-order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel,
 .btn-deleate-cart, #btn-add {
   font-family: "Roboto", sans-serif;
 }
@@ -138,7 +138,7 @@
 }
 @media screen and (max-width: 1050px) {
   .header-logo-img {
-    height: 50%;
+    height: 90%;
   }
 }
 .header-shopping-bag {
@@ -333,8 +333,8 @@ figure a {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 @media screen and (max-width: 1050px) {
   .main-order {
@@ -350,6 +350,7 @@ figure a {
   color: #b36e98;
 }
 .main-order-title-form {
+  text-align: center;
   font-size: 1.5rem;
   color: #d68234;
 }
@@ -371,6 +372,11 @@ figure a {
 }
 .title-order-list li {
   width: 50px;
+}
+@media screen and (max-width: 1050px) {
+  .title-order-list li {
+    width: 30px;
+  }
 }
 
 .title-order-total {
@@ -423,7 +429,7 @@ li {
 }
 @media screen and (max-width: 1050px) {
   .order-list li {
-    width: 40px;
+    width: 30px;
   }
 }
 
@@ -446,7 +452,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   border: #b36e98 solid 2px;
 }
 @media screen and (max-width: 1050px) {
@@ -459,9 +465,9 @@ li {
   }
 }
 .form div {
-  margin-left: 20px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 @media screen and (max-width: 1050px) {
   .form div {
@@ -472,23 +478,26 @@ li {
   }
 }
 .form input {
+  text-align: center;
   margin: 20px 0 20px 0px;
   width: 250px;
   border: #d68234 solid 2px;
   border-radius: 5px;
   padding: 10px;
 }
-.form input.input-submit {
+
+#btn-submit {
   width: 100%;
   margin-left: 20 px;
   background-color: #ff5100;
   color: white;
   padding: 10px;
   border: none;
+  border-radius: 5px;
   opacity: 1;
   transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
 }
-.form input.input-submit:hover {
+#btn-submit:hover {
   cursor: pointer;
   transform: scale(1.1);
   opacity: 0.8;
@@ -514,6 +523,20 @@ li {
     top: 200px;
     width: 80%;
   }
+}
+
+.main-confirm {
+  margin-top: 200px;
+}
+.main-confirm p {
+  text-align: center;
+}
+
+.confirm-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #b36e98;
+  margin-bottom: 40px;
 }
 
 /*# sourceMappingURL=style.css.map */

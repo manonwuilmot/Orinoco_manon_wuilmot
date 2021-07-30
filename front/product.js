@@ -38,9 +38,7 @@ function templateOptionsColors() {
 
 // Récupération des données du produit//
 fetch("http://localhost:3000/api/teddies/" + id)
-  .then(function (response) {
-    return response.json();
-  })
+  .then((response) => response.json())
 
   .then(function (data) {
     //récupération du template de la page produit//
