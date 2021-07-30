@@ -8,7 +8,7 @@ function templateForm() {
   const body = document.querySelector("body");
   body.appendChild(article);
   article.innerHTML =
-    '<h1 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-lastname"><label for="name">Entrer votre nom :  </label><input id="lastname" placeholder="Entrer votre nom ici"required></div><div class="form-firstname"><label for="name">Entrer votre prénom :  </label><input id="firstname" placeholder="Entrer votre prénom ici" required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input id="mail" placeholder="Entrer votre mail ici" required></div><div class="form-submit"><a href="confirm.html" class="confirm"><button id="btn-submit">Envoyer</button></a></div></form>';
+    '<h1 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-lastname"><label for="name">Entrer votre nom :  </label><input id="lastname" placeholder="Entrer votre nom ici"required></div><div class="form-firstname"><label for="name">Entrer votre prénom :  </label><input id="firstname" placeholder="Entrer votre prénom ici" required></div><div class="form-adress"><label for="adress">Entrer votre adresse :  </label><input id="adress" placeholder="Entrer votre adresse ici"required></div><div class="form-city"><label for="city">Entrer votre ville :  </label><input id="city" placeholder="Entrer votre nom ici"required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input id="mail" placeholder="Entrer votre mail ici" required></div><div class="form-submit"><a href="confirm.html" class="confirm"><button id="btn-submit">Envoyer</button></a></div></form>';
 }
 
 //fonction pour créer un template d'un produit ajouté au panier//
@@ -145,6 +145,8 @@ btnSubmit.addEventListener("click", () => {
   let contact = {
     firstName: document.getElementById("firstname").value,
     lastName: document.getElementById("lastname").value,
+    adress: document.getElementById("adress").value,
+    city: document.getElementById("city").value,
     email: document.getElementById("mail").value,
   };
   // on verifie que le formulaire est correctement rempli
