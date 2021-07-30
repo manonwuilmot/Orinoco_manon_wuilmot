@@ -262,7 +262,7 @@ li {
   top: 250px;
   width: 80%;
   height: 300px;
-  background-color: rgb(241, 222, 225);
+  background-color: $color-nude;
   border: $color-pink solid 2px;
   display: flex;
   flex-direction: column;
@@ -278,8 +278,16 @@ li {
 .main-confirm {
   margin-top: 200px;
   @extend .typo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   & p {
     text-align: center;
+  }
+  & img {
+    margin-top: 30px;
+    width: 50%;
   }
 }
 .confirm-title {

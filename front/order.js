@@ -160,7 +160,7 @@ btnSubmit.addEventListener("click", () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ contact }),
+      body: JSON.stringify(contact),
     })
       .then((response) => response.json())
       .then((data) => {

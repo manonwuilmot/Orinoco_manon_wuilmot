@@ -510,7 +510,7 @@ li {
   top: 250px;
   width: 80%;
   height: 300px;
-  background-color: #f1dee1;
+  background-color: #f3e9f1;
   border: #b36e98 solid 2px;
   display: flex;
   flex-direction: column;
@@ -527,9 +527,17 @@ li {
 
 .main-confirm {
   margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .main-confirm p {
   text-align: center;
+}
+.main-confirm img {
+  margin-top: 30px;
+  width: 50%;
 }
 
 .confirm-title {
