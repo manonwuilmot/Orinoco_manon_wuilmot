@@ -8,17 +8,18 @@ function templateForm() {
   const body = document.querySelector("body");
   body.appendChild(article);
   article.innerHTML =
-    '<h1 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-lastname"><label for="name">Entrer votre nom :  </label><input id="lastname" placeholder="Entrer votre nom ici"required></div><div class="form-firstname"><label for="name">Entrer votre prénom :  </label><input id="firstname" placeholder="Entrer votre prénom ici" required></div><div class="form-adress"><label for="adress">Entrer votre adresse :  </label><input id="adress" placeholder="Entrer votre adresse ici"required></div><div class="form-city"><label for="city">Entrer votre ville :  </label><input id="city" placeholder="Entrer votre nom ici"required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input id="mail" placeholder="Entrer votre mail ici" required></div><div class="form-submit"><a href="confirm.html" class="confirm"><button id="btn-submit">Envoyer</button></a></div></form>';
+    '<h2 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-lastname"><label for="name">Entrer votre nom :  </label><input id="lastname" placeholder="Entrer votre nom ici"required></div><div class="form-firstname"><label for="name">Entrer votre prénom :  </label><input id="firstname" placeholder="Entrer votre prénom ici" required></div><div class="form-address"><label for="address">Entrer votre adresse :  </label><input id="address" placeholder="Entrer votre adresse ici"required></div><div class="form-city"><label for="city">Entrer votre ville :  </label><input id="city" placeholder="Entrer votre nom ici"required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input id="mail" placeholder="Entrer votre mail ici" required></div><div class="form-submit"><button id="btn-submit">Envoyer</button></div></form>';
 }
 
 //fonction pour créer un template d'un produit ajouté au panier//
-function templateOrder() {
+function templateProduct() {
   const orderUl = document.createElement("ul");
   main.appendChild(orderUl);
   orderUl.classList.add("order-list");
   orderUl.innerHTML =
     '<li class="order-product-ref"></li><li class="order-product-photo"><img class="order-product-img"</li><li class="order-product-selectquantity"><button class="btn-quantity">+</button><div class="order-product-quantity"></div><button class="btn-quantity-less">-</button></li><li class="order-product-price"></li><li class="order-product-total"></li>';
 }
+
 //fonction calcul du prix total pour un article//
 function totalPrice() {
   for (let i = 0; i < cart.length; i++) {
@@ -60,7 +61,7 @@ if (cart) {
 
   //pour chaque produit présent dans le localStorage, ajouter une nouvelle ligne//
   for (let i = 0; i < cart.length; i++) {
-    templateOrder();
+    templateProduct();
 
     //Affichage des données des produits venant du local storage dans le panier//
     const cart = JSON.parse(localStorage.getItem("cart"));
@@ -126,8 +127,7 @@ for (let i = 0; i < cart.length; i++) {
     else {
       const deleateLine = document.querySelectorAll(".order-list");
       deleateLine[i].textContent = "";
-      cart.splice(cart[i], 1);
-      location.reload();
+      cart.splice(i, 1);
     }
   });
 }
@@ -137,39 +137,56 @@ const btnSubmit = document.getElementById("btn-submit");
 //validation du formulaire et envoie en POST
 
 const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
-
+const regexCity =
+  /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+)){1,10}$/;
+const regexAddress = /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/;
 const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
 
-btnSubmit.addEventListener("click", () => {
+btnSubmit.addEventListener("click", (e) => {
+  e.preventDefault();
   // on prépare les infos pour l'envoie en POST
   let contact = {
     firstName: document.getElementById("firstname").value,
     lastName: document.getElementById("lastname").value,
-    adress: document.getElementById("adress").value,
+    address: document.getElementById("address").value,
     city: document.getElementById("city").value,
     email: document.getElementById("mail").value,
   };
+
   // on verifie que le formulaire est correctement rempli
   if (
     (regexMail.test(contact.email) == true) &
     (regexName.test(contact.firstName) == true) &
-    (regexName.test(contact.lastName) == true)
+    (regexName.test(contact.lastName) == true) &
+    (regexAddress.test(contact.address) == true) &
+    (regexCity.test(contact.city) == true) &
+    (regexMail.test(contact.email) == true)
   ) {
+    let products = [];
+    for (product of cart) {
+      products.push(product.id);
+    }
+    let contactItems = JSON.stringify({
+      contact,
+      products,
+    });
+    const orderPrice = document.querySelector(".title-order-total").textContent;
+    localStorage.setItem("orderPrice", JSON.stringify(orderPrice));
     // on envoie en POST
     fetch("http://localhost:3000/api/teddies/order", {
       method: "POST",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(contact),
+      mode: "cors",
+      body: contactItems,
     })
       .then((response) => response.json())
       .then((data) => {
+        localStorage.setItem("order", JSON.stringify({ contact, products }));
+        localStorage.setItem("orderId", data.orderId);
         window.location.href = "confirm.html";
-        localStorage.setItem("order", JSON.stringify(contact));
-      })
-      .catch((erreur) => console.log("erreur : " + erreur));
+      });
   } else {
     alert(
       "Veuillez renseigner la totalité du formulaire pour valider votre commande."

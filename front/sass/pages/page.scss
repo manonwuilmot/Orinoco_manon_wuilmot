@@ -296,3 +296,9 @@ li {
   color: $color-pink;
   margin-bottom: 40px;
 }
+.title-thanks {
+  font-size: nth($font-size, 4);
+  text-align: center;
+  color: $color-orange;
+  margin-bottom: 40px;
+}
