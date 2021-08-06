@@ -61,12 +61,9 @@ fetch("http://localhost:3000/api/teddies/" + id)
     inputAddToBag.addEventListener("click", () => {
       //fenêtre qui s'affiche pour indiquer que le produit a bien été ajouté//
       const popupConfirmation = document.querySelector(".pop-up-confirmation");
-      const nameOfProduct = document.querySelector(
-        ".page-product-sheet-description-title-name"
-      ).textContent;
       popupConfirmation.textContent =
         "Merci beaucoup ! L'ours en peluche " +
-        nameOfProduct +
+        data.name +
         " a bien été ajouté au panier !";
 
       //animation de la fenêtre//
@@ -104,7 +101,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
       // créer un nouveau produit
       let product = {
         id: id,
-        name: nameOfProduct,
+        name: data.name,
         price: priceOfProduct,
         quantity: quantity,
         img: imgOfProduct,

@@ -89,10 +89,10 @@ if (cart) {
     " <span>Prix total de ma commande : </span>" + displayTotalCart() + " €";
 
   //création d'un bouton pour supprimer l'intégralité du panier//
-  const buttonDeleateCart = document.createElement("button");
-  buttonDeleateCart.classList.add("btn-deleate-cart");
-  main.appendChild(buttonDeleateCart);
-  buttonDeleateCart.textContent = "Supprimer mon panier";
+  const buttonDeleteCart = document.createElement("button");
+  buttonDeleteCart.classList.add("btn-deleate-cart");
+  main.appendChild(buttonDeleteCart);
+  buttonDeleteCart.textContent = "Supprimer mon panier";
   document.querySelector(".btn-deleate-cart").addEventListener("click", () => {
     clearCart();
   });
@@ -120,28 +120,23 @@ for (let i = 0; i < cart.length; i++) {
   });
 }
 
-function deleteOneProduct(index) {
-  for (let i = 0; i < cart.length; i++) {
+//Décrémenter la quantité en cliquant sur le bouton - et changement de prix//
+let inputQuantityLess = document.querySelectorAll(".btn-quantity-less");
+
+for (let i = 0; i < cart.length; i++) {
+  inputQuantityLess[i].addEventListener("click", () => {
     //     //si la quantité est supérieure à 1, décrémenter la quantité et afficher la nouvelle quantité et le nouveau prix dans le panier et le localstorage//
     if (cart[i].quantity > 1) {
       cart[i].quantity--;
       addProduct();
     } else {
+      let index;
       // //     //sinon, supprimer la ligne et supprimer l'article du localStorage//
       cart.splice(index, 1);
       addProduct();
       const deleateLine = document.querySelectorAll(".order-list");
       deleateLine[i].textContent = "";
     }
-  }
-}
-
-//Décrémenter la quantité en cliquant sur le bouton - et changement de prix//
-let inputQuantityLess = document.querySelectorAll(".btn-quantity-less");
-
-for (let i = 0; i < cart.length; i++) {
-  inputQuantityLess[i].addEventListener("click", () => {
-    deleteOneProduct();
   });
 }
 
