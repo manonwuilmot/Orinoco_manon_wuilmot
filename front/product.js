@@ -15,18 +15,6 @@ function templateOneProduct() {
   article.appendChild(inputAddToBag);
   inputAddToBag.setAttribute("id", "btn-add");
   inputAddToBag.setAttribute("type", "button");
-
-  //ajout d'un bouton pour annuler l'ajout au panier//
-  const inputCancel = document.createElement("button");
-  article.appendChild(inputCancel);
-  inputCancel.setAttribute("id", "btn-cancel");
-  inputCancel.setAttribute("type", "button");
-  inputCancel.textContent = "x Annuler x";
-
-  //effacer le localStorage en cliquant sur bouton annuler//
-  inputCancel.addEventListener("click", () => {
-    localStorage.clear(localStorage);
-  });
 }
 //fonction pour les options couleurs//
 function templateOptionsColors() {
@@ -122,7 +110,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
         img: imgOfProduct,
       };
 
-      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
       //fonction pour initialiser le panier et ajouter un nouveau produit//
       function addProduct() {

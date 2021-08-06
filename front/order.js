@@ -11,6 +11,19 @@ function templateForm() {
     '<h2 class="main-order-title-form">Mes informations à compléter :</h2><form class="form" method="get"><div class="form-lastname"><label for="name">Entrer votre nom :  </label><input id="lastname" placeholder="Entrer votre nom ici"required></div><div class="form-firstname"><label for="name">Entrer votre prénom :  </label><input id="firstname" placeholder="Entrer votre prénom ici" required></div><div class="form-address"><label for="address">Entrer votre adresse :  </label><input id="address" placeholder="Entrer votre adresse ici"required></div><div class="form-city"><label for="city">Entrer votre ville :  </label><input id="city" placeholder="Entrer votre nom ici"required></div><div class="form-mail"><label for="mail">Entrer votre adresse mail :  </label><input id="mail" placeholder="Entrer votre mail ici" required></div><div class="form-submit"><button id="btn-submit">Envoyer</button></div></form>';
 }
 
+//création mise en page title//
+function displayTitle() {
+  const titleOrder = document.createElement("h1");
+  main.appendChild(titleOrder);
+  titleOrder.classList.add("main-order-title");
+  titleOrder.textContent = "Détails de ma commande";
+  const titleOrderList = document.createElement("ul");
+  titleOrderList.classList.add("title-order-list");
+  main.appendChild(titleOrderList);
+  titleOrderList.innerHTML =
+    '<li class="title-order-product-ref">/Réf du produit/</li><li class="title-order-product-img">/Image/</li><li class="title-order-product-quantity">/Quantité/</li><li class="title-order-product-price">/Prix unitaire/</li><li class="title-order-product-total">/Prix total/</li>';
+}
+
 //fonction pour créer un template d'un produit ajouté au panier//
 function templateProduct() {
   const orderUl = document.createElement("ul");
@@ -47,17 +60,8 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 //condition pour afficher les produits//
 //si le panier existe déjà dans le local storage alors on récupère les produits et on affiche le formulaire de contact//
 if (cart) {
+  displayTitle();
   templateForm();
-  //création mise en page title//
-  const titleOrder = document.createElement("h1");
-  main.appendChild(titleOrder);
-  titleOrder.classList.add("main-order-title");
-  titleOrder.textContent = "Détails de ma commande";
-  const titleOrderList = document.createElement("ul");
-  titleOrderList.classList.add("title-order-list");
-  main.appendChild(titleOrderList);
-  titleOrderList.innerHTML =
-    '<li class="title-order-product-ref">/Réf du produit/</li><li class="title-order-product-img">/Image/</li><li class="title-order-product-quantity">/Quantité/</li><li class="title-order-product-price">/Prix unitaire/</li><li class="title-order-product-total">/Prix total/</li>';
 
   //pour chaque produit présent dans le localStorage, ajouter une nouvelle ligne//
   for (let i = 0; i < cart.length; i++) {
@@ -78,12 +82,13 @@ if (cart) {
     totalPrice[i].textContent = cart[i].price * cart[i].quantity + " €";
   }
   //création ligne prix total//
-
   const lineTotalPrice = document.createElement("ul");
   main.appendChild(lineTotalPrice);
   lineTotalPrice.classList.add("title-order-total");
   lineTotalPrice.innerHTML =
     " <span>Prix total de ma commande : </span>" + displayTotalCart() + " €";
+
+  //création d'un bouton pour supprimer l'intégralité du panier//
   const buttonDeleateCart = document.createElement("button");
   buttonDeleateCart.classList.add("btn-deleate-cart");
   main.appendChild(buttonDeleateCart);
@@ -102,13 +107,33 @@ if (cart) {
 let quantity = 1;
 let inputQuantity = document.querySelectorAll(".btn-quantity");
 
+function addProduct() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  totalPrice();
+  location.reload();
+}
+
 for (let i = 0; i < cart.length; i++) {
   inputQuantity[i].addEventListener("click", () => {
     cart[i].quantity++;
-    localStorage.setItem("cart", JSON.stringify(cart));
-    totalPrice();
-    location.reload();
+    addProduct();
   });
+}
+
+function deleteOneProduct(index) {
+  for (let i = 0; i < cart.length; i++) {
+    //     //si la quantité est supérieure à 1, décrémenter la quantité et afficher la nouvelle quantité et le nouveau prix dans le panier et le localstorage//
+    if (cart[i].quantity > 1) {
+      cart[i].quantity--;
+      addProduct();
+    } else {
+      // //     //sinon, supprimer la ligne et supprimer l'article du localStorage//
+      cart.splice(index, 1);
+      addProduct();
+      const deleateLine = document.querySelectorAll(".order-list");
+      deleateLine[i].textContent = "";
+    }
+  }
 }
 
 //Décrémenter la quantité en cliquant sur le bouton - et changement de prix//
@@ -116,25 +141,12 @@ let inputQuantityLess = document.querySelectorAll(".btn-quantity-less");
 
 for (let i = 0; i < cart.length; i++) {
   inputQuantityLess[i].addEventListener("click", () => {
-    //     //si la quantité est supérieure à 0, décrémenter la quantité et afficher la nouvelle quantité et le nouveau prix dans le panier et le localstorage//
-    if (cart[i].quantity > 0) {
-      cart[i].quantity--;
-      localStorage.setItem("cart", JSON.stringify(cart));
-      totalPrice();
-      location.reload();
-    }
-    //     //sinon, supprimer la ligne et supprimer l'article du localStorage//
-    else {
-      const deleateLine = document.querySelectorAll(".order-list");
-      deleateLine[i].textContent = "";
-      cart.splice(i, 1);
-    }
+    deleteOneProduct();
   });
 }
 
-const btnSubmit = document.getElementById("btn-submit");
-
 //validation du formulaire et envoie en POST
+const btnSubmit = document.getElementById("btn-submit");
 
 const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
 const regexCity =
