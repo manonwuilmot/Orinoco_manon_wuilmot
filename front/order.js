@@ -13,15 +13,8 @@ function templateForm() {
 
 //création mise en page title//
 function displayTitle() {
-  const titleOrder = document.createElement("h1");
-  main.appendChild(titleOrder);
-  titleOrder.classList.add("main-order-title");
-  titleOrder.textContent = "Détails de ma commande";
-  const titleOrderList = document.createElement("ul");
-  titleOrderList.classList.add("title-order-list");
-  main.appendChild(titleOrderList);
-  titleOrderList.innerHTML =
-    '<li class="title-order-product-ref">/Réf du produit/</li><li class="title-order-product-img">/Image/</li><li class="title-order-product-quantity">/Quantité/</li><li class="title-order-product-price">/Prix unitaire/</li><li class="title-order-product-total">/Prix total/</li>';
+  main.innerHTML =
+    '<h1 class="main-order-title">Détails de ma commande</h1><ul class="title-order-list"><li class="title-order-product-ref">/Réf du produit/</li><li class="title-order-product-img">/Image/</li><li class="title-order-product-quantity">/Quantité/</li><li class="title-order-product-price">/Prix unitaire/</li><li class="title-order-product-total">/Prix total/</li></ul>';
 }
 
 //fonction pour créer un template d'un produit ajouté au panier//
@@ -151,7 +144,7 @@ const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
-  // on prépare les infos pour l'envoie en POST
+  // on prépare les informations de contact pour l'envoie en POST
   let contact = {
     firstName: document.getElementById("firstname").value,
     lastName: document.getElementById("lastname").value,
@@ -160,7 +153,7 @@ btnSubmit.addEventListener("click", (e) => {
     email: document.getElementById("mail").value,
   };
 
-  // on verifie que le formulaire est correctement rempli
+  // on vérifie que le formulaire est correctement rempli
   if (
     (regexMail.test(contact.email) == true) &
     (regexName.test(contact.firstName) == true) &
@@ -169,6 +162,7 @@ btnSubmit.addEventListener("click", (e) => {
     (regexCity.test(contact.city) == true) &
     (regexMail.test(contact.email) == true)
   ) {
+    //on crée un objet contenant le/les identifiant/s du/des produit(s) sélectionné(s) et les informations du client//
     let products = [];
     for (product of cart) {
       products.push(product.id);
