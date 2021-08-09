@@ -302,3 +302,15 @@ li {
   color: $color-orange;
   margin-bottom: 40px;
 }
+
+.no-cart {
+  @extend .typo;
+  text-align: center;
+  font-size: nth($font-size, 4);
+
+  &-text {
+    @extend .typo;
+    font-size: nth($font-size, 4);
+    color: $color-orange;
+  }
+}

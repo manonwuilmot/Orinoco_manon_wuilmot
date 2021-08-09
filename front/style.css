@@ -1,5 +1,5 @@
-.typo, .main-confirm, .pop-up-confirmation, .form, .order-list, .title-order-total, .title-order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, #continueshopping, .pop-up-links, #btn-cancel,
-.btn-deleate-cart, #btn-add {
+.typo, .no-cart-text, .no-cart, .main-confirm, .pop-up-confirmation, .form, .order-list, .title-order-total, .title-order-list, .main-order-title-form, .main-order-title, .product-colors, .page-product-sheet-description-title, .page-product-sheet-description-text, .product-sheet-description-title, .product-sheet-description-text, .backtoshop, #continueshopping, .pop-up-links, #gotobag, #btn-cancel,
+.btn-delete-cart, #btn-add {
   font-family: "Roboto", sans-serif;
 }
 
@@ -23,7 +23,7 @@
 }
 
 #btn-cancel,
-.btn-deleate-cart {
+.btn-delete-cart {
   border: none;
   width: 30%;
   background-color: #fc9160;
@@ -35,7 +35,7 @@
   transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
 }
 #btn-cancel:hover,
-.btn-deleate-cart:hover {
+.btn-delete-cart:hover {
   cursor: pointer;
   transform: scale(1.1);
   opacity: 0.8;
@@ -69,6 +69,9 @@
 
 #gotobag {
   background-color: #ff5100;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
   border-radius: 20px;
   width: 50%;
@@ -104,6 +107,25 @@
   transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
 }
 #continueshopping:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.backtoshop {
+  background-image: linear-gradient(to right, #d68234, #905cf9);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding: 20px 40px;
+  transition: transform 450ms ease-in-out, opacity 450ms ease-in-out;
+}
+.backtoshop:hover {
   cursor: pointer;
   transform: scale(1.1);
   opacity: 0.8;
@@ -552,6 +574,15 @@ li {
   text-align: center;
   color: #d68234;
   margin-bottom: 40px;
+}
+
+.no-cart {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.no-cart-text {
+  font-size: 1.5rem;
+  color: #d68234;
 }
 
 /*# sourceMappingURL=style.css.map */

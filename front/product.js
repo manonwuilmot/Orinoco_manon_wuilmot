@@ -21,7 +21,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
       </div>
       <article class="page-product-sheet">
         <figure class="page-product-sheet-photo">
-          <img src=${data.imageUrl} class="page-product-sheet-photo-img"/>
+          <img src="${data.imageUrl}" class="page-product-sheet-photo-img"/>
         </figure>
         <div class="page-product-sheet-description">
           <div class="page-product-sheet-description-title">
@@ -85,7 +85,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
         name: data.name,
         price: data.price / 100,
         quantity: 1,
-        img: data.img,
+        img: data.imageUrl,
       };
 
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
