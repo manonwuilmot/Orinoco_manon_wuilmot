@@ -118,4 +118,11 @@ fetch("http://localhost:3000/api/teddies/" + id)
         addProduct();
       }
     });
+  })
+  .catch(function (error) {
+    console.error(
+      "Oups, les ours en peluches ne sont plus ici. Merci de mettre à jour votre page."
+    );
+    document.querySelector("main").innerText =
+      "Oups, les ours en peluches ne sont plus ici. Merci de mettre à jour votre page.";
   });

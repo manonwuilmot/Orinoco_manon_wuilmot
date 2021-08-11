@@ -1,4 +1,5 @@
 let cart = JSON.parse(localStorage.getItem("cart"));
+const article = document.createElement("article");
 
 //Création éléments mise en page//
 const main = document.querySelector("main");
@@ -38,7 +39,6 @@ function templateForm() {
     </li>
   </ul>
 `;
-  const article = document.createElement("article");
   const body = document.querySelector("body");
   body.appendChild(article);
   article.innerHTML = `
@@ -84,6 +84,7 @@ function totalPrice() {
     totalPrice[i].textContent = cart[i].quantity * cart[i].price + " €";
   }
 }
+
 //fonction calcul du prix total du panier//
 function displayTotalCart() {
   let totalCart = 0;
@@ -101,8 +102,8 @@ function clearCart() {
 
 //condition pour afficher les produits//
 //si le panier existe déjà dans le local storage alors on récupère les produits et on affiche le formulaire de contact//
-for (let j = 0; j < cart.length; j++) {
-  if (cart[j].id) {
+for (let i = 0; i < cart.length; i++) {
+  if (cart[i]) {
     templateForm();
 
     //boucle pour créer une ligne pour chaque produit présent dans le local storage et récupérer les données relatives à chaque produit//
@@ -156,6 +157,7 @@ for (let j = 0; j < cart.length; j++) {
     main.innerHTML = '<h1 class="main-order-title">Panier vide</h1>';
   }
 }
+
 ///Incrémenter et décrémenter la quantité d'un produit///
 //incrémenter la quantité en cliquant sur le bouton quantité + et changement du prix total//
 
@@ -229,6 +231,7 @@ btnSubmit.addEventListener("click", (e) => {
     let products = [];
     for (product of cart) {
       products.push(product.id);
+      products.push(product.quantity);
     }
     let contactItems = JSON.stringify({
       contact,
@@ -249,6 +252,7 @@ btnSubmit.addEventListener("click", (e) => {
       .then((data) => {
         localStorage.setItem("order", JSON.stringify({ contact, products }));
         localStorage.setItem("orderId", data.orderId);
+        console.log(data);
         window.location.href = "confirm.html";
       });
   } else {
