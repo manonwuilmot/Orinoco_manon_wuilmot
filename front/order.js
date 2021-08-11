@@ -77,7 +77,7 @@ function templateForm() {
   </form>`;
 }
 
-//fonction calcul du prix total pour un article//
+//fonction calcul du prix total pour une ligne d'un article//
 function totalPrice() {
   for (let i = 0; i < cart.length; i++) {
     let totalPrice = document.querySelectorAll(".order-product-total");
